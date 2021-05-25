@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#999B84"
+    android:gravity="center"
+    android:orientation="vertical"
+    tools:context=".FirstFragment">
+
+    <EditText
+        android:id="@+id/number1_input"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginHorizontal="8dp"
+        android:layout_marginVertical="6dp"
+        android:ems="10"
+        android:hint="First Number"
+        android:inputType="number" />
+
+    <EditText
+        android:id="@+id/number2_input"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginHorizontal="8dp"
+        android:layout_marginVertical="6dp"
+        android:ems="10"
+        android:hint="Second Number"
+        android:inputType="number" />
+
+    <Button
+        android:id="@+id/sumBtn"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginHorizontal="8dp"
+        android:layout_marginVertical="6dp"
+        android:text="sum (+)" />
+
+    <TextView
+        android:id="@+id/sumResult"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginHorizontal="8dp"
+        android:layout_marginVertical="6dp"
+        android:gravity="center"
+        android:paddingTop="10dp"
+        android:text="Sum Result"
+        android:textColor="#000000"
+        android:textSize="24sp" />
+</LinearLayout>

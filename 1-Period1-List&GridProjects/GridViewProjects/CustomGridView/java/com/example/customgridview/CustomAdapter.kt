@@ -8,8 +8,8 @@ import android.widget.ArrayAdapter
 import kotlinx.android.synthetic.main.item.view.*
 
 class CustomAdapter(context: Context,
-                    private val names:Array<String>,
-                    private val images:Array<Int>)
+                    private val names:ArrayList<String>,
+                    private val images:ArrayList<Int>)
     :ArrayAdapter<String>(context, R.layout.item, names) {
 
     override fun getView(position: Int, convertView: View?, parent: ViewGroup): View {

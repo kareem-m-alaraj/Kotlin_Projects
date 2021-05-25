@@ -2,6 +2,7 @@ package com.example.customlistviewwithadditem
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.widget.AdapterView
 import android.widget.Toast
 import kotlinx.android.synthetic.main.activity_main.*
 
@@ -30,6 +31,12 @@ class MainActivity : AppCompatActivity() {
         listView.setOnItemClickListener { adapterView, view, i, l ->
             val n = adapterView.getItemAtPosition(i).toString()
             Toast.makeText(this, n, Toast.LENGTH_SHORT).show()
+        }
+
+        listView.onItemLongClickListener = AdapterView.OnItemLongClickListener { parent, view, position, id ->
+            names.removeAt(position)
+            myAdapter.notifyDataSetChanged()
+            true
         }
     }
 }
