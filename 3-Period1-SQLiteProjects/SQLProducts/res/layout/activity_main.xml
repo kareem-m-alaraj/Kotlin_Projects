@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:gravity="center"
+    android:orientation="vertical"
+    tools:context=".MainActivity">
+
+    <EditText
+        android:id="@+id/name_input"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="8dp"
+        android:ems="10"
+        android:hint="Name"
+        android:inputType="textPersonName" />
+
+    <EditText
+        android:id="@+id/quantity_input"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginHorizontal="8dp"
+        android:layout_marginTop="12dp"
+        android:layout_marginBottom="40dp"
+        android:ems="10"
+        android:hint="Quantity"
+        android:inputType="textPersonName" />
+
+    <Button
+        android:id="@+id/addProductBtn"
+        android:layout_width="165dp"
+        android:layout_height="wrap_content"
+        android:layout_margin="8dp"
+        android:onClick="addProduct"
+        android:text="Add Product" />
+
+    <Button
+        android:id="@+id/deleteProductBtn"
+        android:layout_width="165dp"
+        android:layout_height="wrap_content"
+        android:layout_margin="8dp"
+        android:onClick="deleteProduct"
+        android:text="Delete Product" />
+
+    <Button
+        android:id="@+id/productsListBtn"
+        android:layout_width="165dp"
+        android:layout_height="wrap_content"
+        android:layout_margin="8dp"
+        android:text="Products List" />
+</LinearLayout>
