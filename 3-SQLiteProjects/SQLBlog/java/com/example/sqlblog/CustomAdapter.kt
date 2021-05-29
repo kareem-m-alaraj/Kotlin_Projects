@@ -4,7 +4,9 @@ import android.app.AlertDialog
 import android.app.NotificationChannel
 import android.app.NotificationManager
 import android.app.PendingIntent
+import android.app.PendingIntent.getActivity
 import android.content.Context
+import android.content.Intent
 import android.os.Build
 import android.view.LayoutInflater
 import android.view.View
@@ -16,7 +18,6 @@ import androidx.core.content.ContextCompat.getSystemService
 import kotlinx.android.synthetic.main.blog.view.*
 import kotlinx.android.synthetic.main.delete_dialog.view.*
 import kotlinx.android.synthetic.main.update_dialog.view.*
-
 
 @Suppress("LocalVariableName")
 class CustomAdapter(context: Context, private val blog: ArrayList<BlogTemplate>)
@@ -79,20 +80,22 @@ class CustomAdapter(context: Context, private val blog: ArrayList<BlogTemplate>)
                 myDatabase.deleteBlog(blog[position].id);
                 deleteBlog(context as MainActivity);
 
-                val CHANNEL_ID = "channel_id";
-                val ID = 2468;
+                notify(1234, "Delete Blog","The Blog is Deleted", R.drawable.ic_launcher_foreground, context, MainActivity())
 
-                val importance = NotificationManager.IMPORTANCE_HIGH;
-                val myChannel = NotificationChannel(CHANNEL_ID, "Channel Name", importance)
-                val notification = NotificationCompat.Builder(context, CHANNEL_ID)
-                    .setSmallIcon(R.drawable.ic_launcher_foreground)
-                    .setContentTitle("Delete Blog")
-                    .setContentText("The Blog is Deleted")
-                    .build()
-
-                val myNotificationManager = getSystemService(Context.NOTIFICATION_SERVICE) as NotificationManager
-                myNotificationManager.createNotificationChannel(myChannel)
-                myNotificationManager.notify(ID, notification);
+//                val CHANNEL_ID = "channel_id";
+//                val ID = 2468;
+//
+//                val importance = NotificationManager.IMPORTANCE_HIGH;
+//                val myChannel = NotificationChannel(CHANNEL_ID, "Channel Name", importance)
+//                val notification = NotificationCompat.Builder(context, CHANNEL_ID)
+//                        .setSmallIcon(R.drawable.ic_launcher_foreground)
+//                        .setContentTitle("Delete Blog")
+//                        .setContentText("The Blog is Deleted")
+//                        .build()
+//
+//                val myNotificationManager = context.getSystemService(Context.NOTIFICATION_SERVICE) as NotificationManager
+//                myNotificationManager.createNotificationChannel(myChannel)
+//                myNotificationManager.notify(ID, notification);
 
                 dialog.cancel();
             }
@@ -102,5 +105,38 @@ class CustomAdapter(context: Context, private val blog: ArrayList<BlogTemplate>)
             }
         }
         return view;
+    }
+}
+
+fun notify(id:Int, title: String, text: String, icon:Int, context: Context, actionActivity: Context) {
+
+    if (Build.VERSION.SDK_INT >= 26) {
+        val importance = NotificationManager.IMPORTANCE_HIGH
+        val mChannel = NotificationChannel("channel_01", "My app", importance)
+
+        var notification = NotificationCompat.Builder(context, "channel_01")
+                .setSmallIcon(icon)
+                .setContentTitle(title)
+                .setContentText(text)
+                .build()
+        val intent = Intent(context, actionActivity::class.java)
+        val pendingIntent = PendingIntent.getActivity(context, 0, intent, PendingIntent.FLAG_UPDATE_CURRENT)
+        notification.contentIntent = pendingIntent
+
+        val mNotificationManager = context.getSystemService(Context.NOTIFICATION_SERVICE) as NotificationManager
+        mNotificationManager.createNotificationChannel(mChannel)
+        mNotificationManager.notify(id, notification)
+    } else {
+        val notification = NotificationCompat.Builder(context)
+                .setSmallIcon(icon)
+                .setContentTitle(title)
+                .setContentText(text)
+                .build()
+
+        val intent = Intent(context, actionActivity::class.java)
+        val pendingIntent = PendingIntent.getActivity(context, 0, intent, PendingIntent.FLAG_UPDATE_CURRENT)
+        notification.contentIntent = pendingIntent
+        val mNotificationManager = context.getSystemService(Context.NOTIFICATION_SERVICE) as NotificationManager
+        mNotificationManager.notify(id, notification)
     }
 }
