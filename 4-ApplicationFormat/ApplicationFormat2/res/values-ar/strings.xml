@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">تنسيق التطبيق</string>
+
+    <string name="username_input">اسم المستخدم</string>
+    <string name="password_input">كلمة السر</string>
+    <string name="login_button">تسجيل الدخول</string>
+    <string name="toast">مرحباً</string>
+</resources>

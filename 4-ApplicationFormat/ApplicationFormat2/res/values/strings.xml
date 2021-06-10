@@ -1,0 +1,8 @@
+<resources>
+    <string name="app_name">ApplicationFormat</string>
+
+    <string name="username_input">User Name</string>
+    <string name="password_input">Password</string>
+    <string name="login_button">Login</string>
+    <string name="toast">Hello</string>
+</resources>

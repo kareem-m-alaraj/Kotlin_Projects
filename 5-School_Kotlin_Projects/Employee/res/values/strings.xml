@@ -1,0 +1,4 @@
+<resources>
+    <string name="app_name">Employee</string>
+    <string name="app_name2" translatable="false">الموظفين</string>
+</resources>

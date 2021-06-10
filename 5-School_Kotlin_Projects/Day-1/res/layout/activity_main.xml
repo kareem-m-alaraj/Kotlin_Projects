@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    tools:context=".MainActivity" >
+
+    <ImageView
+        android:id="@+id/imageView"
+        android:layout_width="match_parent"
+        android:layout_height="240dp"
+        app:srcCompat="@drawable/alquds" />
+
+    <Button
+        android:id="@+id/btnSecondActivity"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="مساجد البلدة القديمة" />
+
+    <Button
+        android:id="@+id/btnThirdActivity"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="موقع الانترنت" />
+
+    <Button
+        android:id="@+id/btnFourthActivity"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="فيديو" />
+</LinearLayout>
