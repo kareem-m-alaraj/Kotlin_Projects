@@ -48,7 +48,7 @@ class MyDatabase(context: Context) : SQLiteOpenHelper(context, MyDatabase.DATABA
     fun findProduct (productName: String): Array<String> {
         var dbString: Array<String>
         val db = this.writableDatabase
-        val query = "SELECT * FROM $DATABASE_TABLE_NAME WHERE $PRODUCT_NAME = \"$productName\";"
+        val query = "SELECT * FROM $DATABASE_TABLE_NAME WHERE $PRODUCT_NAME Like \"$productName\";"
         val cursor = db.rawQuery(query, null)
 
         dbString = Array<String>(cursor.count){""};
@@ -60,11 +60,11 @@ class MyDatabase(context: Context) : SQLiteOpenHelper(context, MyDatabase.DATABA
                         cursor.getString(cursor.getColumnIndex(KEY_ID)) != null &&
                         cursor.getString(cursor.getColumnIndex(PRODUCT_NAME)) != null &&
                         cursor.getString(cursor.getColumnIndex(PRODUCT_QUANTITY)) != null
-                ) {
+                ){
                     dbString[index] +=
-                            "${cursor.getString(cursor.getColumnIndex(KEY_ID))}, " +
-                            "${cursor.getString(cursor.getColumnIndex(PRODUCT_NAME))}, " +
-                            "${cursor.getString(cursor.getColumnIndex(PRODUCT_QUANTITY))}";
+                            "ID: ${cursor.getString(cursor.getColumnIndex(KEY_ID))} \n" +
+                            "Name: ${cursor.getString(cursor.getColumnIndex(PRODUCT_NAME))} \n" +
+                            "Quantity: ${cursor.getString(cursor.getColumnIndex(PRODUCT_QUANTITY))} \n";
                 }
                 cursor.moveToNext()
             }
@@ -91,9 +91,9 @@ class MyDatabase(context: Context) : SQLiteOpenHelper(context, MyDatabase.DATABA
                         cursor.getString(cursor.getColumnIndex(PRODUCT_QUANTITY)) != null
                 ) {
                     dbString[index] +=
-                        "${cursor.getString(cursor.getColumnIndex(KEY_ID))}, " +
-                        "${cursor.getString(cursor.getColumnIndex(PRODUCT_NAME))}, " +
-                        "${cursor.getString(cursor.getColumnIndex(PRODUCT_QUANTITY))}";
+                            "ID: ${cursor.getString(cursor.getColumnIndex(KEY_ID))} \n" +
+                            "Name: ${cursor.getString(cursor.getColumnIndex(PRODUCT_NAME))} \n" +
+                            "Quantity: ${cursor.getString(cursor.getColumnIndex(PRODUCT_QUANTITY))} \n";
                 }
                 cursor.moveToNext()
             }
