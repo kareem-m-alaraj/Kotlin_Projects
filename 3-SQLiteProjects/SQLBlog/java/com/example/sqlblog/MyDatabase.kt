@@ -83,25 +83,25 @@ class MyDatabase(context: Context): SQLiteOpenHelper(context, MyDatabase.DATABAS
 
     fun searchBlog(blogTitle: String): ArrayList<BlogTemplate>{
         var blogList = ArrayList<BlogTemplate>();
-        val db = this.writableDatabase;
-        val query = "SELECT * FROM $DATABASE_TABLE_NAME WHERE $BLOG_TITLE = \"$blogTitle\";";
+        val query = "SELECT * FROM $DATABASE_TABLE_NAME WHERE $BLOG_TITLE Like '%${blogTitle}%'";
+        val db = this.readableDatabase;
         var cursor: Cursor? = null;
 
-        try {
-            cursor = db.rawQuery(query, null);
-        }catch (error: SQLiteException){
-            db.execSQL(query);
-            return ArrayList();
+        try{
+            cursor = db.rawQuery(query, null)
+        }catch (error: SQLiteException) {
+            db.execSQL(query)
+            return ArrayList()
         }
 
-        if (cursor.moveToFirst()){
+        if (cursor.moveToFirst()) {
             do {
                 val blogID = cursor.getInt(cursor.getColumnIndex(BLOG_ID));
                 val blogTitle = cursor.getString(cursor.getColumnIndex(BLOG_TITLE));
                 val blogDescription = cursor.getString(cursor.getColumnIndex(BLOG_DESCRIPTION));
                 val blog = BlogTemplate(blogID, blogTitle, blogDescription);
                 blogList.add(blog)
-            }while (cursor.moveToNext())
+            } while (cursor.moveToNext())
         }
         return blogList;
     }

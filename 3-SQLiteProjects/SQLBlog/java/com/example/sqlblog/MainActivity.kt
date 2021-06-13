@@ -3,6 +3,8 @@ package com.example.sqlblog
 import android.content.Context
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.text.Editable
+import android.text.TextWatcher
 import android.view.LayoutInflater
 import android.widget.ListView
 import androidx.appcompat.app.AlertDialog
@@ -59,6 +61,7 @@ class MainActivity : AppCompatActivity() {
         }
 
         // Search Blog
+
         searchBlogButton.setOnClickListener {
             val layoutInflater = LayoutInflater.from(this);
             val view = layoutInflater.inflate(R.layout.search_dialog, null);
