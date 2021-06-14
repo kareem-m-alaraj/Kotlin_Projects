@@ -1,0 +1,627 @@
+in build.gradle (Module)	
+
+apply plugin: 'kotlin-android-extensions'
+or
+id 'kotlin-android-extensions'
+
+________________ in First _______ List & Gred View ____________________________________________________
+
+------------- .kt -----------------
+
+        val names = arrayOf("Kareem", "Mohammed", "Sayer", "Alaraj")
+        val array_adapter: ArrayAdapter<String> = ArrayAdapter(this,
+                                                  android.R.layout.simple_list_item_1, names)
+
+        listView.adapter = array_adapter
+        gridView.adapter = array_adapter
+
+        listView.setOnItemClickListener { adapterView, view, i, j ->
+            val n = adapterView.getItemAtPosition(i).toString()
+            Toast.makeText(this, n, Toast.LENGTH_SHORT).show()
+        }
+        gridView.setOnItemClickListener { adapterView, view, x, j ->
+            val n = adapterView.getItemAtPosition(x).toString()
+            Toast.makeText(this, n, Toast.LENGTH_SHORT).show()
+        }
+
+
+
+------------- .xml -----------------
+LinearLayout -> vertical
+
+    <ListView
+        android:id="@+id/listView"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_weight="1"/>
+
+    <GridView
+        android:id="@+id/gridView"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_weight="1"
+        android:numColumns="2"/>
+
+================================= OR this Method =================================
+
+------------- .kt -----------------
+
+        val names = ArrayList<String>()
+
+        add.setOnClickListener {
+
+            names.add(input.text.toString())
+
+            val array_adapter:ArrayAdapter<String> = ArrayAdapter(this,android.R.layout.simple_list_item_1, names)
+            listView.adapter = array_adapter
+
+            input.text = null
+        }
+
+------------- .xml -----------------
+
+LinearLayout -> vertical
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
+
+        <EditText
+            android:id="@+id/editTextInput"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:ems="10"
+            android:hint="Enter Name"
+            android:inputType="textPersonName" />
+
+        <Button
+            android:id="@+id/addBtn"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text="Add" />
+
+    </LinearLayout>
+
+    <ListView
+        android:id="@+id/listView"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent" />
+
+========================== OR this Method=================================
+
+------------- .kt -----------------
+
+        val myArray = arrayOf("Black", "White", "Blue", "Green", "Red")
+        val arrayAdapter = ArrayAdapter(this,
+                           android.R.layout.simple_list_item_1, myArray)
+        listView.adapter = arrayAdapter
+
+        listView.setOnItemClickListener { parent: AdapterView<*>?,
+                                          view: View?, position: Int, id: Long ->
+            val x = parent?.getItemAtPosition(position).toString()
+            Toast.makeText(this, x, Toast.LENGTH_SHORT).show()
+
+        }
+
+------------- .xml -----------------
+
+    <ListView
+        android:id="@+id/listView"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent" />
+
+
+____________________________ Custom Adapter to List View __________________________________________________
+
+=============== Main Activity ==================
+
+        val names = arrayOf("APPLE", "BANANAS", "GRAPES", "ORANGE")
+        val images = arrayOf(R.drawable.apple, R.drawable.bananas, R.drawable.grapes, R.drawable.orange)
+
+        val myAdapter = CustomAdapter(this, names, images)
+
+        listView.adapter = myAdapter
+
+        listView.setOnItemClickListener { parent: AdapterView<*>?, view: View?, position: Int, id: Long ->
+            val x = parent?.getItemAtPosition(position).toString()
+            Toast.makeText(this, x, Toast.LENGTH_SHORT).show()
+        }
+
+=============== Custom Adapter =================
+
+class CustomAdapter(context: Context ,
+                    private val names: Array<String> ,
+                    private val images: Array<Int>) :
+    ArrayAdapter<String>(context, R.layout.item, names) {
+
+    override fun getView(position: Int, convertView: View?, parent: ViewGroup): View {
+
+        val l: LayoutInflater = LayoutInflater.from(context)
+        val customView = l.inflate(R.layout.item, parent, false)
+
+        customView.textView.text = names[position]
+        customView.imageView.setImageResource(images[position])
+
+        return customView
+    }
+}
+
+------------- activity_main.xml -----------------
+
+    <ListView
+        android:id="@+id/listView"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent" />
+
+------------- item.xml --------------------------
+LinearLayout -> horizontal
+
+    <TextView
+        android:id="@+id/textView"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_weight="1"
+        android:gravity="center"
+        android:text="TextView"
+        android:textSize="28sp"
+        android:textStyle="bold|italic" />
+
+    <ImageView
+        android:id="@+id/imageView"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_weight="1"
+        tools:srcCompat="@tools:sample/avatars" />
+
+___________________ in Second _________ Web View ____________________________________________________________________
+
+================ Add Permission in Manifsts ==================
+<uses-permission android:name="android.permission.INTERNET" />
+
+
+        webBtn.settings.javaScriptEnabled
+        webBtn.loadUrl("https://google.com")
+        webBtn.webViewClient = WebViewClient()
+    
+    } -> end on create
+
+    override fun onKeyDown(keyCode: Int, event: KeyEvent?): Boolean {
+
+        if (keyCode == KeyEvent.KEYCODE_BACK && webBtn.canGoBack()){
+            webBtn.goBack()
+            return true
+        }
+
+        return super.onKeyDown(keyCode, event)
+   }
+
+------------- .xml --------------------------
+
+    <WebView
+        android:id="@+id/webBtn"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+___________________ in Third _________ Video View __________________________________________________________________
+
+//      videoView.setVideoURI(Uri.parse(""))
+
+        videoView.setVideoURI(Uri.parse("android.resource://"+packageName+"/"+R.raw.video))
+
+        val mediaController = MediaController(this)
+        videoView.setMediaController(mediaController)
+        videoView.start()
+
+------------- .xml --------------------------
+
+    <VideoView
+        android:id="@+id/videoView"
+        android:layout_width="0dp"
+        android:layout_height="500dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+___________________ in Forth _________ Music Player ________________________________________________________________
+
+------------------ Simple Method ----------------
+
+        var mediaPlayer: MediaPlayer? = null
+
+        play_btn.setOnClickListener {
+            if (mediaPlayer == null) {
+                mediaPlayer = MediaPlayer.create(this, R.raw.music)
+//              mediaPlayer.setDataSource("https://mp3.panet.co.il/media/Eyad-6anos/Panet.co.il_Eyad-6anos-5smtak.mp3")
+//              mediaPlayer = MediaPlayer.create(this, Uri.parse("https://mp3.panet.co.il/media/Eyad-6anos/Panet.co.il_Eyad-6anos-5smtak.mp3"))
+
+                mediaPlayer!!.isLooping = true
+                mediaPlayer!!.start()
+            } else mediaPlayer!!.start()
+        }
+
+        pause_btn.setOnClickListener {
+            if (mediaPlayer != null && mediaPlayer!!.isPlaying){
+                mediaPlayer!!.pause()
+            }
+        }
+
+        stop_btn.setOnClickListener {
+            if (mediaPlayer != null) {
+                mediaPlayer!!.stop()
+                mediaPlayer!!.release()
+                mediaPlayer = null
+            }
+        }
+
+------------- .xml -----------------
+
+    <ImageButton
+        android:id="@+id/play_btn"
+        android:layout_width="60dp"
+        android:layout_height="50dp"
+        app:srcCompat="@android:drawable/ic_media_play" />
+
+    <ImageButton
+        android:id="@+id/pause_btn"
+        android:layout_width="60dp"
+        android:layout_height="50dp"
+        app:srcCompat="@android:drawable/ic_media_pause" />
+
+    <ImageButton
+        android:id="@+id/stop_btn"
+        android:layout_width="60dp"
+        android:layout_height="50dp"
+        app:srcCompat="@android:drawable/checkbox_off_background" />
+
+
+========================== OR this Method ==============================
+
+------------- .kt -----------------
+
+class MainActivity2 : AppCompatActivity() {
+
+    private lateinit var mp: MediaPlayer
+    private var totalTime: Int = 0
+
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
+        setContentView(R.layout.activity_main2)
+
+        mp = MediaPlayer.create(this, R.raw.godzilla)
+        mp.isLooping = true
+        mp.setVolume(0.5f, 0.5f)
+        totalTime = mp.duration
+
+        // Volume Bar
+        volumeBar.setOnSeekBarChangeListener(
+            object : SeekBar.OnSeekBarChangeListener {
+                override fun onProgressChanged(seekbar: SeekBar?, progress: Int, fromUser: Boolean) {
+                    if (fromUser) {
+                        var volumeNum = progress / 100.0f
+                        mp.setVolume(volumeNum, volumeNum)
+                    }
+                }
+                override fun onStartTrackingTouch(p0: SeekBar?) {
+                }
+                override fun onStopTrackingTouch(p0: SeekBar?) {
+                }
+            }
+        )
+
+        // Position Bar
+        positionBar.max = totalTime
+        positionBar.setOnSeekBarChangeListener(
+            object : SeekBar.OnSeekBarChangeListener {
+                override fun onProgressChanged(seekBar: SeekBar?, progress: Int, fromUser: Boolean) {
+                    if (fromUser) {
+                        mp.seekTo(progress)
+                    }
+                }
+                override fun onStartTrackingTouch(p0: SeekBar?) {
+                }
+                override fun onStopTrackingTouch(p0: SeekBar?) {
+                }
+            }
+        )
+
+        // Thread
+        Thread(Runnable {
+            while (mp != null) {
+                try {
+                    var msg = Message()
+                    msg.what = mp.currentPosition
+                    handler.sendMessage(msg)
+                    Thread.sleep(1000)
+                } catch (e: InterruptedException) {
+                }
+            }
+        }).start()
+    }
+
+    @SuppressLint("HandlerLeak")
+    var handler = object : Handler() {
+        override fun handleMessage(msg: Message) {
+            var currentPosition = msg.what
+
+            // Update positionBar
+            positionBar.progress = currentPosition
+
+            // Update Labels
+            var elapsedTime = createTimeLabel(currentPosition)
+            elapsedTimeLabel.text = elapsedTime
+
+            var remainingTime = createTimeLabel(totalTime - currentPosition)
+            remainingTimeLabel.text = "-$remainingTime"
+        }
+    }
+
+    fun createTimeLabel(time: Int): String {
+        var timeLabel = ""
+        var min = time / 1000 / 60
+        var sec = time / 1000 % 60
+
+        timeLabel = "$min:"
+        if (sec < 10) timeLabel += "0"
+        timeLabel += sec
+
+        return timeLabel
+    }
+
+    fun playBtnClick(v: View) {
+
+        if (mp.isPlaying) {
+            // Stop
+            mp.pause()
+            playBtn.setBackgroundResource(R.drawable.play)
+
+        } else {
+            // Start
+            mp.start()
+            playBtn.setBackgroundResource(R.drawable.stop)
+        }
+    }
+
+}
+
+
+------------- .xml -----------------
+
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".MainActivity"
+    android:orientation="vertical"
+    android:gravity="center">
+
+    <ImageView
+        android:layout_width="384dp"
+        android:layout_height="438dp"
+        android:src="@drawable/music" />
+
+    <SeekBar
+        android:id="@+id/positionBar"
+        android:layout_width="332dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="30dp" />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <TextView
+            android:id="@+id/elapsedTimeLabel"
+            android:layout_width="49dp"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="40dp"
+            android:text="0:11" />
+
+        <TextView
+            android:id="@+id/remainingTimeLabel"
+            android:layout_width="48dp"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="240dp"
+            android:text="-1:11" />
+    </LinearLayout>
+
+    <Button
+        android:id="@+id/playBtn"
+        android:layout_width="62dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="40dp"
+        android:background="@drawable/play"
+        android:onClick="playBtnClick"
+        tools:ignore="OnClick" />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:layout_marginTop="40dp"
+        android:gravity="center">
+        <ImageView
+            android:layout_width="18dp"
+            android:layout_height="18dp"
+            android:src="@drawable/mute"/>
+        <SeekBar
+            android:id="@+id/volumeBar"
+            android:layout_width="300dp"
+            android:layout_height="wrap_content"
+            android:progress="50"
+            android:max="100"/>
+        <ImageView
+            android:layout_width="26dp"
+            android:layout_height="26dp"
+            android:src="@drawable/sound"/>
+    </LinearLayout>
+</LinearLayout>
+
+
+____________________ in Fifth ________ Fragments ________________________________________________________________
+
+--------------- .kt ----------------------
+
+        -----=== Main activity ===-----
+
+fragmentBtn.setOnClickListener {
+            supportFragmentManager.beginTransaction()
+                    .replace(R.id.fragment, BlankFragment())
+                    .commit()
+        }
+
+       -----=== Blank Fragment ===-----
+
+
+class BlankFragment : Fragment() {
+
+    override fun onCreateView(
+        inflater: LayoutInflater, container: ViewGroup?,
+        savedInstanceState: Bundle?
+    ): View? {
+        // Inflate the layout for this fragment
+        val view = inflater.inflate(R.layout.fragment_blank, container, false)
+
+        view.Btn.setOnClickListener {
+
+        }
+        return view
+    }
+
+}
+
+---------------- activity_main.xml --------------------
+LinearLayout -> vertical
+
+    LinearLayout -> horizontal -> { frag_Act_Btn } ->
+
+<FrameLayout
+        android:id="@+id/fragment"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_weight="1" />
+
+____________________ in Sixth ________ Dialog ________________________________________________________________
+
+
+dialogBtn.setOnClickListener {
+
+            val inflater = LayoutInflater.from(this)
+            val view = inflater.inflate(R.layout.dialog, null)
+
+            val builder = AlertDialog.Builder(this)
+            builder.setTitle("Dialog")
+            builder.setView(view)
+
+            // ********** Custom Dialog ********** \\
+
+            val dialog = builder.create()
+            dialog.show()
+
+            view.button.setOnClickListener {
+                dialog.cancel()
+            }
+            view.button2.setOnClickListener {
+                dialog.cancel()
+            }
+
+        }
+
+            // ********** Simple Dialog ********** \\
+
+            builder.setPositiveButton("Yes") {
+                _: DialogInterface, _: Int ->
+                val dialog = builder.create()
+                dialog.dismiss()
+            }
+
+            builder.setNegativeButton("No") {
+                _: DialogInterface, _: Int ->
+                val dialog = builder.create()
+                dialog.dismiss()
+            }
+
+____________________ in Seventh ________ Notifications ________________________________________________________________
+
+           // ********** Notification when >= 8.0 (Oreo) ********** \\
+
+val CHANNEL_ID = "channel_01"
+        val id = 13456
+        
+        button.setOnClickListener {
+
+            val importance = NotificationManager.IMPORTANCE_HIGH
+            val mChannel = NotificationChannel(CHANNEL_ID, "اسم القناة", importance)
+
+            var notification = NotificationCompat.Builder(this, CHANNEL_ID)
+                .setSmallIcon(R.drawable.ic_launcher_foreground)
+                .setContentTitle("My Notification")
+                .setContentText(id.toString())
+                .build()
+
+            val mNotificationManager= getSystemService(Context.NOTIFICATION_SERVICE) as NotificationManager
+            mNotificationManager.createNotificationChannel(mChannel)
+
+            mNotificationManager.notify(id, notification)
+        }
+
+           // ********** Notification when < 8.0 (Oreo) ********** \\
+
+class -> 
+val id = 1234
+
+fun onCreate ->
+
+        button.setOnClickListener {
+
+            val notification = NotificationCompat.Builder(this)
+                .setSmallIcon(R.drawable.ic_launcher_foreground)
+                .setContentTitle("My Notification")
+                .setContentText(id.toString())
+                .build()
+
+            val mNotificationManager= getSystemService(Context.NOTIFICATION_SERVICE) as NotificationManager
+
+            mNotificationManager.notify(id, notification)
+        }
+
+____________________ Intent Code ________________________________________________________________
+
+
+activityBtn.setOnClickListener {
+            val intent = Intent(this, MainActivity::class.java)
+            startActivity(intent)
+        }
+
+nextBtn.setOnClickListener {
+            val intent = Intent (this, number2::class.java)
+            var n1 = Num1.text.toString()
+            var n2 = Num2.text.toString()
+            intent.putExtra("n1", n1)
+            intent.putExtra("n2", n2)
+            startActivity(intent)
+        }
+
+val intent = getIntent()
+        view1.text = intent.getStringExtra("n1")
+        view2.text = intent.getStringExtra("n2")
+
+____________________ when using Back Btn ____ in Manifsts ____________________________________________________________
+
+<meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value=".MainActivity" />
+
+____________________ when using Internet ____ in Manifsts ____________________________________________________________
+
+    <uses-permission android:name="android.permission.INTERNET" />
