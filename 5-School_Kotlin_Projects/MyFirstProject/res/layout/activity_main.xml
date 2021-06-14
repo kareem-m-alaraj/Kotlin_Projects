@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="vertical"
+    tools:context=".MainActivity">
+
+    <Button
+        android:id="@+id/firstActBtn"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="First Activity" />
+
+    <Button
+        android:id="@+id/secondActBtn"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Second Activity" />
+
+    <Button
+        android:id="@+id/menusActBtn"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Menus Activity" />
+
+    <Button
+        android:id="@+id/numberActBtn"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Number Activity" />
+
+    <Button
+        android:id="@+id/imagesActBtn"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Images Activity" />
+</LinearLayout>

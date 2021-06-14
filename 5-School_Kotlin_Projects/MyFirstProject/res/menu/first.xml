@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+    <item
+        android:id="@+id/east"
+        android:title="الشرق" />
+    <item
+        android:id="@+id/west"
+        android:title="الغرب" />
+    <item
+        android:id="@+id/north"
+        android:title="الشمال" />
+    <item
+        android:id="@+id/south"
+        android:title="الجنوب" />
+</menu>

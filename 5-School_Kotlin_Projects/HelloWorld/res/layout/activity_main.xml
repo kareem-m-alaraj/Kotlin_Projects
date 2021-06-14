@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:layout_gravity="fill"
+    android:orientation="vertical"
+    app:layoutDescription="@xml/activity_main_scene"
+    tools:context=".MainActivity">
+
+    <Button
+        android:id="@+id/counterBtn"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Counter" />
+
+    <Button
+        android:id="@+id/frameBtn"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Frame" />
+
+    <Button
+        android:id="@+id/calculatorBtn"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Calculator" />
+
+    <Button
+        android:id="@+id/messagesBtn"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Messages" />
+
+    <Button
+        android:id="@+id/imagesBtn"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Images" />
+
+    <Button
+        android:id="@+id/liveCycleBtn"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Live Cycle" />
+
+    <Button
+        android:id="@+id/twoActivities"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Two Activities" />
+
+    <Button
+        android:id="@+id/colorsBtn"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Colors" />
+</LinearLayout>

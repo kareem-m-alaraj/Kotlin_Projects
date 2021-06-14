@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <item
+        android:id="@+id/counterEx"
+        android:title="Counter Example" />
+    <item
+        android:id="@+id/frameEx"
+        android:title="Frame Example" />
+    <item
+        android:id="@+id/calculatorEx"
+        android:title="Calculator Example" />
+    <item
+        android:id="@+id/messagesEx"
+        android:title="Messages Example" />
+</menu>

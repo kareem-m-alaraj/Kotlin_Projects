@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".ImagesActivity">
+
+    <Button
+        android:id="@+id/canadaBtn"
+        android:layout_width="110dp"
+        android:layout_height="63dp"
+        android:layout_marginTop="65dp"
+        android:layout_marginEnd="180dp"
+        android:text="كندا"
+        android:textSize="22sp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.292"
+        app:layout_constraintStart_toEndOf="@+id/palestineBtn"
+        app:layout_constraintTop_toBottomOf="@+id/imageView"
+        app:layout_constraintVertical_bias="0.369" />
+
+    <ImageView
+        android:id="@+id/imageView"
+        android:layout_width="230dp"
+        android:layout_height="229dp"
+        android:layout_marginStart="141dp"
+        android:layout_marginTop="104dp"
+        android:layout_marginEnd="142dp"
+        android:layout_marginBottom="499dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.09"
+        tools:srcCompat="@tools:sample/avatars[11]" />
+
+    <Button
+        android:id="@+id/turkeyBtn"
+        android:layout_width="114dp"
+        android:layout_height="64dp"
+        android:layout_marginTop="65dp"
+        android:text="تركيا"
+        android:textSize="22sp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.669"
+        app:layout_constraintStart_toEndOf="@+id/palestineBtn"
+        app:layout_constraintTop_toBottomOf="@+id/imageView"
+        app:layout_constraintVertical_bias="0.0" />
+
+    <Button
+        android:id="@+id/palestineBtn"
+        android:layout_width="112dp"
+        android:layout_height="62dp"
+        android:layout_marginStart="48dp"
+        android:layout_marginTop="65dp"
+        android:text="فلسطين"
+        android:textSize="22sp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/imageView"
+        app:layout_constraintVertical_bias="0.0" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>
